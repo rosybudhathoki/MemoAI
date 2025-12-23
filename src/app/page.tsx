@@ -1,5 +1,5 @@
-import TypewriterTitle from "@/components/TypewriterTitle";
-import { Button } from "@/components/ui/button";
+import TypewriterTitle from "@/src/components/TypewriterTitle";
+import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import {ArrowRight} from 'lucide-react';
 
