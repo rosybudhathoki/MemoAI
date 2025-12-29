@@ -22,26 +22,32 @@ const CreateNoteDialog = (props: Props) => {
       })
       return respose.data
     }
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement >) => {
      e.preventDefault();
 
-     if (input === ''){
+     if (input === ""){
       window.alert("Please enter a name for your notebook")
-      return
+      return;
      }
+     
      CreateNoteBook.mutate(undefined, {
-      onSuccess: ({ note_id }) => {
-        console.log("Created a new note:", { note_id });
-        router.push(`/notebook/${note_id}`);
+      onSuccess: (data) => {
+        const noteId = data?.note_id;
+        if (typeof noteId !== "number") {
+          console.error("Invalid note_id returned:", data);
+          window.alert("Failed to create notebook.");
+          return;
+        }
+        router.push(`/notebook/${noteId}`);
       },
-      onError: () => {
+      onError: (error) => {
         console.error("Error creating notebook");
         window.alert("Failed to create new notebook.");
       },
-    });
-}
+    }); 
+  };
   
   return (
     <Dialog>
@@ -65,7 +71,7 @@ const CreateNoteDialog = (props: Props) => {
           <div className="h-4"></div>
           <div className="flex items-center gap-2">
             <Button type="reset" variant="secondary">Cancel</Button>
-            <Button type="submit" className='bg-green-600' disabled={CreateNoteBook.isPending}>
+            <Button type="submit" className='bg-green-600' disabled={CreateNoteBook.isPending || !input.trim()}>
               {
                 CreateNoteBook.isPending && (<Loader2 className='w-4 h-4 mr-2 animate-spin'/>
                 )}Create</Button>

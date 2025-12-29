@@ -28,9 +28,9 @@ export async function POST(req: Request) {
       return new NextResponse("Failed to generate image.",{status: 500, });
     }
 
-    const note_ids = await db.insert($notes).values({name, userId, imageUrl:image_url}).returning({insertId: $notes.id,})
+    const notes_ids = await db.insert($notes).values({name, userId, imageUrl:image_url}).returning({insertId: $notes.id,})
     console.log({image_description});
     return NextResponse.json({
-      note_id: note_ids[0].insertId
+      note_id: notes_ids[0].insertId
     });
 }
