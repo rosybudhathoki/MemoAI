@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center grainy bg-gradient-to-r from-rose-100 to-teal-100">
+    <div className="min-h-screen flex flex-col items-center justify-center grainy bg-gradient-to-r from-rose-100 to-teal-100 px-4">
       
       <h1 className="font-extrabold text-6xl md:text-7xl text-center leading-tight">
         AI <span className="text-green-600">note-taking</span> assistant
