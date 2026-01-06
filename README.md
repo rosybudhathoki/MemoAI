@@ -31,7 +31,7 @@
 
 1. Clone the repo:
  
-- git clone https://github.com/yourusername/memoai.git
+- git clone https://github.com/rosybudhathoki/MemoAI.git
 - cd memoai
 
 3. Install dependencies:
